@@ -44,25 +44,29 @@ The following features must NOT be implemented:
 ### usage
 
 `owp -a`  
-Prompts to put in URL and then password (dont echo), saves hash of URL and
+Prompts to put in URI and then password (dont echo), saves hash of URI and
 reversable hash from password in file.  
 If URL already exists, let user confirm the overwrite.  
 
-`owp -g URL`  
-Encrypts URL, tries to find key in file (path from cfg).
-
-### cfg_file
-
-File in which the path to the target_file resides.  
+`owp -g URI`  
+Encrypts URI, tries to find key in file (path from cfg).
 
 ### target_file
 
-File in which irreversibly hashed URL's are mapped to reversibly hashed
-passwords.
-The reverse hash password is the plain URL itself which should only be known by
-the user.
+File in which irreversibly hashed URI's are mapped to reversibly hashed
+passwords.  
+The reverse hash password is the plain URI itself which should only be known by
+the user.  
 Incourage the user to remove read bits from target file and as such additionally
-require sudo/doas to even open the file.
+require sudo/doas to even open the file.  
+
+## v0.2.0 optional hardening
+
+- add config option to use encrypted target_files only
+  Upon any given command, prompt for the file password and then continue as normal.
+  Newly created target files will be encrypted.
+  Old unencrypted ones will be ignored with a warning prompt or maybe add a
+  convert command/prompt?
 
 ## v1.0.0 Clean up
 

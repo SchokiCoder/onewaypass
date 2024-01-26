@@ -1,10 +1,36 @@
 # v0.2.0
 
 - arg `-e` which toggles encryption being used on target or not
+- bother with post quantum encryption?
 
 # v0.1.0
 
 + define goals.md
+
++ Instead of hardwiring encryption into the application, just call a hash and
+  encrypt binary?
+  `owp -t ~/.pw -h sha256sum -e "gpg -d" -g facebook.com`
+                 ^            ^
+	         |            -----------
+                 |                      |
+  calls `sha256sum` on "facebook.com"   |
+                                        calls `gpg -d` on target_file
+                                                    ^
+                                      ---------------these suck
+                                     \/
+  `owp -t ~/.pw -h sha256sum -e "gpg -c"`
+  
+  this also sucks:
+  `gpg -d my_file | owp -g $(echo "mastadon.social" | sha256sum)`
+  
+  this straight up doesn't work, pw needs to be piped into owp:
+  `gpg -d my_file | owp -a $(echo "mastadon.social" | sha256sum)`
+
+  JUST HARDWIRE the hash and encrypt algorithms!
+
+- What about Username / e-Mail, PIN, Secret Question?
+  Just don't care? (Let the user have a seperate file?)
+
 - add arg `-t TARGET_PATH`
 - target file specificcation
 - add entry add command `owp -a`

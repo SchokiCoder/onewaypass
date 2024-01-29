@@ -28,8 +28,19 @@
 
   JUST HARDWIRE the hash and encrypt algorithms!
 
-- What about Username / e-Mail, PIN, Secret Question?
-  Just don't care? (Let the user have a seperate file?)
+- handle problems.md
+
+- Regarding the extra fields (PIN, e-Mail, etc) just ask the user:
+```
+Do you want to add a field?
+y
+Name the field:
+e-Mail
+Value of that field:
+gaben@valvesoftware.com
+Do you want to add a field?
+n
+```
 
 - add arg `-t TARGET_PATH`
 - target file specificcation
